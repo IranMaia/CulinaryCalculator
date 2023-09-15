@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CulinaryCalculator</string>
+    <string name="select_input_unit">Select Input Unit</string>
+    <string name="value_input">Value Input</string>
+    <string name="select_output_unit">Select Output Unit</string>
+    <string name="value_output">Value Output</string>
+    <string name="calculate">Calculate</string>
 </resources>
