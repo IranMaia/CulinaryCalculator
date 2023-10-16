@@ -4,32 +4,28 @@ import com.example.culinarycalculator.data.UnitConverterData
 import com.example.culinarycalculator.util.UnitConverterLogic
 
 
-class UnitConverterViewModel : ViewModel (){
-    private val logic = UnitConverterLogic()
-    private val data = UnitConverterData()
+    class UnitConverterViewModel : ViewModel() {
+        private val logic = UnitConverterLogic()
+        val data = UnitConverterData()
 
-    fun convert () {
-        val inputValueText = data.inputValue.get()
-        if (inputValueText.isNullOrBlank()){
-            data.outputValue.set("Valor Inválido")
-            return
+        fun convert() {
+            val inputValueText = data.inputValue.get()
+            if (inputValueText.isNullOrBlank()) {
+                data.outputValue.set("Valor inválido")
+                return
+            }
+
+            val inputValueNumeric = inputValueText.toDoubleOrNull()
+            if (inputValueNumeric == null) {
+                data.outputValue.set("Valor inválido")
+                return
+            }
+
+            val inputUnitIndex = data.selectedInputUnit.get()
+            val outputUnitIndex = data.selectedOutputUnit.get()
+
+            val convertedValue = logic.convert(inputValueNumeric, inputUnitIndex, outputUnitIndex)
+            data.outputValue.set(String.format("%.2f", convertedValue))
         }
-
-        val inputValueNumeric = inputValueText.toDoubleOrNull()
-        if (inputValueNumeric == null) {
-            data.outputValue.set("Valor Inválido")
-            return
-        }
-
-        val inputUnitIndex = data.selectInputUnit.get()
-        val outputUnitIndex = data.selectedOutputUnit.get()
-
-        val convertedValue = logic.convert(inputValueNumeric, inputUnitIndex, outputUnitIndex)
-        data.outputValue.set(String.format("%.2f", convertedValue))
-
-
-
-
     }
 
-}

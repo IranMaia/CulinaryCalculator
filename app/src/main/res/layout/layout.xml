@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="20dp"
-        app:android:selection="@={viewModel.selectedInputUnit}"/>
+        android:selectedItemPosition="@={viewModel.data.selectedInputUnit}" />
 
     <EditText
         android:id="@+id/editTextInputValue"
@@ -41,7 +41,7 @@
         android:inputType="numberDecimal"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/editbox_background"
-        app:text="@={viewModel.inputValue}"/>
+        android:text="@={viewModel.data.inputValue}"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="20dp"
-        app:selection="@{viewModel.selectedOutputUnit}" />
+        app:selection="@{viewModel.data.selectedOutputUnit}" />
 
     <EditText
         android:id="@+id/editTextOutputValue"
@@ -69,14 +69,15 @@
         android:background="@android:drawable/editbox_background"
         android:focusable="false"
         android:clickable="false"
-        app:text="@{viewModel.outputValue}" />
+        app:text="@{viewModel.data.outputValue}" />
     <Button
+        android:id="@+id/buttonCalcular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/calculate"
         android:layout_gravity="center_horizontal"
-        android:onClick="@{viewModel::onCalculateClick}" />
+        android:onClick="@{() -> viewModel.convert()}" />
 
 </LinearLayout>
 
