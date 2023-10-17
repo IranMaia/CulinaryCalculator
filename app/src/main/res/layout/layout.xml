@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:entries="@array/unit_array"
         android:padding="20dp"
         android:selectedItemPosition="@={viewModel.data.selectedInputUnit}" />
 
@@ -56,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:entries="@array/unit_array"
         android:padding="20dp"
         app:selection="@{viewModel.data.selectedOutputUnit}" />
 

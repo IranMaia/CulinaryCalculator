@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unit_array">
+        <item>Gramas</item>
+        <item>Onças</item>
+        <item>Libras</item>
+        <item>Quilogramas</item>
+        <item>Miligramas</item>
+    </string-array>
+</resources>
