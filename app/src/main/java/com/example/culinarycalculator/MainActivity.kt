@@ -1,6 +1,8 @@
 package com.example.culinarycalculator
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -24,18 +26,19 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         @BindingAdapter("selectedInputUnit")
-        fun setSelectedInputUnit(spinner: Spinner, viewModel: UnitConverterViewModel){
-            spinner.setSelection(viewModel.data.selectedInputUnit.get())
+        fun setSelectedInputUnit(spinner: Spinner, viewModel: UnitConverterViewModel) {
+            spinner.setSelection(viewModel.data.selectedInputUnit.value ?: 0)
         }
 
         @BindingAdapter("inputValue")
         fun setInputValue(editText: EditText, viewModel: UnitConverterViewModel) {
-            editText.setText(viewModel.data.inputValue.get())
+            editText.setText(viewModel.data.inputValue.value ?: "")
         }
 
         @BindingAdapter("selectedOutputUnit")
         fun setSelectedOutputUnit(spinner: Spinner, viewModel: UnitConverterViewModel) {
-            spinner.setSelection(viewModel.data.selectedOutputUnit.get())
+            viewModel.data.selectedOutputUnit.set(spinner.selectedItemPosition)
+
         }
 
         @BindingAdapter("calculatedValue")
@@ -46,7 +49,27 @@ class MainActivity : AppCompatActivity() {
         setupListeners()
     }
 
+
     private fun setupListeners() {
+
+        val spinnerOutputUnit = findViewById<Spinner>(R.id.spinnerOutputUnit)
+
+        spinnerOutputUnit.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.data.selectedOutputUnit.set(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        })
+
+
         val buttonCalcular = findViewById<Button>(R.id.buttonCalcular)
 
         buttonCalcular.setOnClickListener {
